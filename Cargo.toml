@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "one",
     "support/advent",
     "support/advent_macro",
     "support/parse",
@@ -8,8 +9,16 @@ members = [
 resolver = "2"
 
 [workspace.dependencies]
-advent = { path = "support/advent" }
-advent_macro = { path = "support/advent_macro" }
 combine = "4.6.7"
-parse = { path = "support/parse" }
-parse_macro = { path = "support/parse_macro" }
+
+[workspace.dependencies.advent]
+path = "support/advent"
+
+[workspace.dependencies.advent_macro]
+path = "support/advent_macro"
+
+[workspace.dependencies.parse]
+path = "support/parse"
+
+[workspace.dependencies.parse_macro]
+path = "support/parse_macro"
