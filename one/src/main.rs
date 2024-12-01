@@ -43,4 +43,4 @@ fn part_two(input: String) -> u64 {
     total_score
 }
 
-harness!();
+harness!(part_1: 1110981, part_2: 24869388);
