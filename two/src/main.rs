@@ -1,6 +1,7 @@
 use advent::prelude::*;
+use parser::range;
 
-#[derive(Debug, HasParser)]
+#[derive(Debug, HasParser, Clone)]
 #[parse(sep_by = " ")]
 struct InputLine {
     nums: List<i32, SepBy<Space>>
@@ -22,12 +23,39 @@ fn is_valid(line: &List<i32, SepBy<Space>>) -> bool {
     true
 }
 
-#[part_two]
-fn part_two(input: List<InputLine, TermWith<NewLine>>) -> usize {
-    for line in input {
-        
+fn is_valid2(line: Vec<i32>) -> bool {
+    let mut current = &line[0];
+    let descending = line[0] > line[1];
+    for val in &line[1..]{
+        if val.abs_diff(*current) > 3 || val == current {return false}
+        if (!descending && current > val) || (descending && current < val) {return false}
+        current = val;
     }
-    0
+    true
 }
 
-harness!(part_1: 218);
+#[part_two]
+fn part_two(input: List<InputLine, TermWith<NewLine>>) -> usize {
+    let mut safe = 0;
+    for line in input {
+        if is_valid(&line.nums) {
+            safe += 1;
+            continue;
+        }
+        // test each removal
+        for i in 0 .. line.nums.len() {
+            let mut to_test = Vec::new();
+            for (j, num) in line.clone().nums.into_iter().enumerate() {
+                if j == i {continue;}
+                to_test.push(num);
+            }
+            if is_valid2(to_test) {
+                safe += 1;
+                break;
+            }
+        }
+    }
+    safe
+}
+
+harness!(part_1: 218, part_2: 290);
