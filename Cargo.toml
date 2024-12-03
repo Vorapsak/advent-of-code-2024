@@ -5,6 +5,7 @@ members = [
     "support/advent_macro",
     "support/parse",
     "support/parse_macro",
+    "three",
     "two",
 ]
 resolver = "2"
