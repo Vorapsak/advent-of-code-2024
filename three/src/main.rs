@@ -2,7 +2,6 @@ use advent::prelude::*;
 
 #[part_one]
 fn part_one(input: String) -> u32 {
-    //let input = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))".to_string();
     let mut counter = 0;
     let mut i = 0;
     let input: Vec<_> = input.chars().collect();
@@ -53,8 +52,7 @@ fn parse_up_to_three(input: &Vec<char>, i: usize) -> Option<(u32,usize)> {
 }
 
 #[part_two]
-fn part_two(input: String) -> &'static str {
-    let input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))".to_string();
+fn part_two(input: String) -> u32 {
     let mut counter = 0;
     let mut i = 0;
     let input: Vec<_> = input.chars().collect();
@@ -66,6 +64,17 @@ fn part_two(input: String) -> &'static str {
             continue;
         }
         i += 1;
+        if input[i] == 'o' {
+            i += 1;
+            if input[i] == '(' && input[i+1] == ')' {
+                execute = true;
+                i += 2;
+            } else if input[i] == 'n' && input[i+1] == '\'' && input[i+2] == 't' && input[i+3] == '(' && input[i+4] == ')' {
+                execute = false;
+                i += 5;
+            }
+            continue;
+        }
         if input[i] != 'u' {continue;}
         i += 1;
         if input[i] != 'l' {continue;}
@@ -87,14 +96,12 @@ fn part_two(input: String) -> &'static str {
                 if execute {
                     counter += arg1 * arg2;
                 }
-                dbg!(counter);
             }
         } else {
-            dbg!(input[i]);
             continue;
         }
     }
 counter
 }
 
-harness!(part_1: 156388521);
+harness!(part_1: 156388521, part_2: 75920122);
