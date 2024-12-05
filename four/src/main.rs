@@ -1,4 +1,5 @@
 use advent::prelude::*;
+use parser::choice::Optional;
 
 #[part_one]
 fn part_one(input: String) -> usize {
@@ -50,8 +51,33 @@ fn part_one(input: String) -> usize {
 
 
 #[part_two]
-fn part_two(_: String) -> &'static str {
-    "incomplete"
+fn part_two(input: String) -> usize {
+    let mut grid: Vec<Vec<char>> = Vec::new();
+    input.lines().for_each(|line| grid.push(line.chars().collect()));
+    let mut count = 0;
+
+    //y's
+    for i in 1..grid[0].len()-1 {
+        for j in 1..grid.len()-1 {
+            if grid[i][j] == 'A' {
+                if is_x(&grid, i, j){ 
+                    count += 1;
+                }
+            }
+        }
+    }
+
+    count
+}
+
+fn is_x(grid: &Vec<Vec<char>>, i: usize, j: usize) -> bool {
+    let mut diag1: Vec<char> = vec!(grid[i-1][j-1]);
+    diag1.push(grid[i+1][j+1]);
+    let mut diag2: Vec<char> = vec!(grid[i-1][j+1]);
+    diag2.push(grid[i+1][j-1]);
+    diag1.sort();
+    diag2.sort();
+    diag1 == vec!['M','S'] && diag2 == vec!['M', 'S']
 }
 
 harness!(part_1: 2464);
