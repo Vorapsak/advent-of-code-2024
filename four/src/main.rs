@@ -1,5 +1,4 @@
 use advent::prelude::*;
-use parser::choice::Optional;
 
 #[part_one]
 fn part_one(input: String) -> usize {
@@ -80,4 +79,4 @@ fn is_x(grid: &Vec<Vec<char>>, i: usize, j: usize) -> bool {
     diag1 == vec!['M','S'] && diag2 == vec!['M', 'S']
 }
 
-harness!(part_1: 2464);
+harness!(part_1: 2464, part_2: 1982);
