@@ -75,4 +75,4 @@ fn part_two(input: String) -> usize {
     nodes.len()
 }
 
-harness!(part_1: 423);
+harness!(part_1: 423, part_2: 1287);
