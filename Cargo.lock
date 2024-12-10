@@ -1325,6 +1325,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "ten"
+version = "0.1.0"
+dependencies = [
+ "advent",
+ "combine",
+ "parse",
+]
+
+[[package]]
 name = "three"
 version = "0.1.0"
 dependencies = [

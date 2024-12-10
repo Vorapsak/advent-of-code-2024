@@ -11,6 +11,7 @@ members = [
     "support/advent_macro",
     "support/parse",
     "support/parse_macro",
+    "ten",
     "three",
     "two",
 ]
