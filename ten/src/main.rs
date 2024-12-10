@@ -17,15 +17,15 @@ fn part_one(grid: Grid<Digit>) -> usize {
         for x in 0..grid.width() {
             let Digit(val) = grid[y][x];
             if val == 0 {
-                paths += calculate_paths(&grid, x, y);
+                paths += calculate_paths(&grid, x, y).iter().collect::<HashSet<_>>().len()
             }
         }
     }
     paths
 }
 
-fn calculate_paths(grid: &Grid<Digit>, x: usize, y: usize) -> usize {
-    let mut paths = HashSet::new();
+fn calculate_paths(grid: &Grid<Digit>, x: usize, y: usize) -> Vec<(usize, usize)> {
+    let mut paths = Vec::new();
     let mut to_visit = vec![(x,y)];
     while !to_visit.is_empty() {
         if let Some((x, y)) = to_visit.pop(){
@@ -47,7 +47,7 @@ fn calculate_paths(grid: &Grid<Digit>, x: usize, y: usize) -> usize {
                 let Digit(candidate) = grid[y][x];
                 if candidate == val + 1 {
                     if candidate == 9 {
-                        paths.insert((x,y));
+                        paths.push((x,y));
                     } else {
                         to_visit.push((x,y));
                     }
@@ -55,12 +55,21 @@ fn calculate_paths(grid: &Grid<Digit>, x: usize, y: usize) -> usize {
             }
         }
     }
-    paths.len()
+    paths
 }
 
 #[part_two]
-fn part_two(_: String) -> &'static str {
-    "incomplete"
+fn part_two(grid: Grid<Digit>) -> usize {
+    let mut paths = 0;
+    for y in 0..grid.height() {
+        for x in 0..grid.width() {
+            let Digit(val) = grid[y][x];
+            if val == 0 {
+                paths += calculate_paths(&grid, x, y).len()
+            }
+        }
+    }
+    paths
 }
 
-harness!();
+harness!(part_1: 776, part_2: 1657);
