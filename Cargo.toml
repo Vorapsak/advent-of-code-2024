@@ -13,6 +13,7 @@ members = [
     "support/parse",
     "support/parse_macro",
     "ten",
+    "thirteen",
     "three",
     "twelve",
     "two",

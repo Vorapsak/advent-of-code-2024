@@ -70,7 +70,7 @@ fn cost(region: &Vec<(usize, usize)>, grid: &Grid<char>) -> usize {
 }
 
 #[part_two]
-fn part_two(_: String) -> usize {
+fn part_two(input: Grid<char>) -> usize {
     let mut regions: HashMap<char, Vec<Vec<(usize, usize)>>> = HashMap::new();
 
     for y in 0..input.height() {
@@ -88,30 +88,32 @@ fn part_two(_: String) -> usize {
 
     regions.values().map(|char_regions| char_regions.iter().map(|region| cost2(region, &input)).sum::<usize>()).sum()
 
-    
-    0
+}
+
+#[derive(PartialEq, Debug)]
+enum Direction {
+    North,
+    East,
+    South,
+    West
+}
+
+impl Direction {
+    fn rotate(&mut self) -> Self {
+        match self {
+            Self::North => Self::East,
+            Self::East => Self::South,
+            Self::South => Self::West,
+            Self::West => Self::North,
+        }
+    }
 }
 
 fn cost2(region: &Vec<(usize, usize)>, grid: &Grid<char>) -> usize {
-    let mut perimeter = 0;
-    let mut area = 0;
-    for (x,y) in region {
-        let mut neighbor_candidates = Vec::new();
-        if *x < grid.width()-1 { neighbor_candidates.push((x+1,*y)); }
-        if *y < grid.height()-1 { neighbor_candidates.push((*x,y+1));}
-        if *x > 0 { neighbor_candidates.push((x-1,*y)); }
-        if *y > 0 { neighbor_candidates.push((*x, y-1)); }
-        let mut walls = 4;
-        for tup in neighbor_candidates {
-            if region.contains(&tup) {
-                walls -= 1;
-            }
-        }
-        perimeter += walls;
-        area += 1
-    }
     
-    area * perimeter
+
+
+    region.len()
 }
 
 harness!(part_1: 1485656);
