@@ -45,6 +45,15 @@ impl Machine {
     }
 
     fn cheapest_two(self: &Self) -> usize {
+        let conv_x = self.prize.x as usize + 10000000000000;
+        let conv_y = self.prize.y as usize + 10000000000000;
+        let lcm_x = self.button_a.x as usize * self.button_b.x as usize;
+        let lcm_y = self.button_a.y as usize * self.button_b.y as usize;
+        let remainder_x = conv_x % lcm_x;
+        let remainder_y = conv_y % lcm_y;
+        let auto_x_inputs = conv_x / lcm_x;
+        let auto_y_inputs = conv_y / lcm_y;
+
         0
     }
 }
