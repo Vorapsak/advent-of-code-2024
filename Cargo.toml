@@ -2,6 +2,7 @@
 members = [
     "eight",
     "eleven",
+    "fifteen",
     "five",
     "four",
     "fourteen",
@@ -9,6 +10,7 @@ members = [
     "one",
     "seven",
     "six",
+    "sixteen",
     "support/advent",
     "support/advent_macro",
     "support/parse",

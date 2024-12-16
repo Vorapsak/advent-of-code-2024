@@ -302,6 +302,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "486f806e73c5707928240ddc295403b1b93c96a02038563881c4a2fd84b81ac4"
 
 [[package]]
+name = "fifteen"
+version = "0.1.0"
+dependencies = [
+ "advent",
+ "combine",
+ "parse",
+]
+
+[[package]]
 name = "five"
 version = "0.1.0"
 dependencies = [
@@ -1210,6 +1219,15 @@ checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
 name = "six"
+version = "0.1.0"
+dependencies = [
+ "advent",
+ "combine",
+ "parse",
+]
+
+[[package]]
+name = "sixteen"
 version = "0.1.0"
 dependencies = [
  "advent",
