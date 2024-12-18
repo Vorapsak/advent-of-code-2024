@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "eight",
+    "eighteen",
     "eleven",
     "fifteen",
     "five",
