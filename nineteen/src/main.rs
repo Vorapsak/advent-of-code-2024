@@ -11,7 +11,6 @@ fn part_one(input: String) -> usize {
     let re = Regex::new(&("^(".to_owned() + &towels.join("|") + ")+$")).unwrap();
 
      for pattern in targets {
-        //if try_parsing(&towels, &pattern) {
         if re.is_match(pattern) {
             satisfiable += 1;
         }
