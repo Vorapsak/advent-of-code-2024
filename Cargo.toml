@@ -22,6 +22,8 @@ members = [
     "thirteen",
     "three",
     "twelve",
+    "twenty",
+    "twenty-one",
     "two",
 ]
 resolver = "2"
