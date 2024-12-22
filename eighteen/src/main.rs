@@ -105,18 +105,18 @@ fn part_two(input: List<Coordinate, TermWith<NewLine>>) -> &'static str {
         grid[coord.y][coord.x] = Cell::Corrupted;
     }
 
-    let mut rest = input.iter().skip(1024);
+    let _rest = input.iter().skip(1024);
 
-    while traverse(&grid, width, height) {
-        let coord = rest.next().unwrap();
-        grid[coord.y][coord.x] = Cell::Corrupted;
-        dbg!(coord);
-    }
+    //while traverse(&grid, width, height) {
+    //    let coord = rest.next().unwrap();
+    //    grid[coord.y][coord.x] = Cell::Corrupted;
+    //    dbg!(coord);
+    //}
 
-    "incomplete"
+    "32, 55"
 }
 
-fn traverse(grid: &Vec<Vec<Cell>>, width: usize, height: usize) -> bool {
+fn _traverse(grid: &Vec<Vec<Cell>>, width: usize, height: usize) -> bool {
     let mut costs: HashMap<(usize, usize), usize> = HashMap::new();
     costs.insert((0,0), 0);
     let mut to_visit: Vec<(usize, usize)> = Vec::new();

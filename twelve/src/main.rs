@@ -91,15 +91,15 @@ fn part_two(input: Grid<char>) -> usize {
 }
 
 #[derive(PartialEq, Debug)]
-enum Direction {
+enum _Direction {
     North,
     East,
     South,
     West
 }
 
-impl Direction {
-    fn rotate(&mut self) -> Self {
+impl _Direction {
+    fn _rotate(&mut self) -> Self {
         match self {
             Self::North => Self::East,
             Self::East => Self::South,
@@ -109,7 +109,7 @@ impl Direction {
     }
 }
 
-fn cost2(region: &Vec<(usize, usize)>, grid: &Grid<char>) -> usize {
+fn cost2(region: &Vec<(usize, usize)>, _grid: &Grid<char>) -> usize {
     
 
 
