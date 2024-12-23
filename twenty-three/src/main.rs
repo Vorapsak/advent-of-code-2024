@@ -3,18 +3,16 @@ use advent::prelude::*;
 #[part_one]
 fn part_one(input: String) -> usize {
     let mut adjacents: HashMap<&str, Vec<&str>> = HashMap::new();
-    let mut ids: HashSet<&str> = HashSet::new();
+
     for line in input.lines() {
         let (a, b) = line.split_once("-").unwrap();
         adjacents.entry(a).or_default().push(b);
         adjacents.entry(b).or_default().push(a);
-        ids.insert(a);
-        ids.insert(b);
     }
 
     let mut trios: HashSet<Vec<&str>> = HashSet::new();
 
-    for computer_id in ids {
+    for &computer_id in adjacents.keys() {
         if !computer_id.starts_with('t') {
             continue;
         }
@@ -27,7 +25,6 @@ fn part_one(input: String) -> usize {
                     t.sort();
                     trios.insert(t);
                 }
-
             }
         }
 
@@ -38,8 +35,20 @@ fn part_one(input: String) -> usize {
 }
 
 #[part_two]
-fn part_two(_: String) -> &'static str {
-    "incomplete"
+fn part_two(input: String) -> String {
+    let mut adjacents: HashMap<&str, Vec<&str>> = HashMap::new();
+    let mut ids: HashSet<&str> = HashSet::new();
+    for line in input.lines() {
+        let (a, b) = line.split_once("-").unwrap();
+        adjacents.entry(a).or_default().push(b);
+        adjacents.entry(b).or_default().push(a);
+        ids.insert(a);
+        ids.insert(b);
+    }
+
+
+
+    "".into()
 }
 
 harness!(part_1: 1163);
